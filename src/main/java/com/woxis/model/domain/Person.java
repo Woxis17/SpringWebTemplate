@@ -1,4 +1,4 @@
-package com.woxis.model;
+package com.woxis.model.domain;
 
 /**
  * Created by Robert on 05-Jan-17.
