@@ -47,4 +47,6 @@ Temporary Items
 .apdisk
 
 #InteliJ files
-.iml
+*.iml
+
+.idea/

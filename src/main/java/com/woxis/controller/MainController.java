@@ -11,6 +11,7 @@ import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.transaction.Transactional;
 
 /**
  * Created by Robert on 06-Jan-17.
@@ -36,9 +37,10 @@ public class MainController {
     }
 
     @RequestMapping(path = "/adduser", method = RequestMethod.POST)
+    @Transactional
     private void addUser(@RequestBody UserLogin user) {
 
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("NewPersistenceUnit");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("PM");
 
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();

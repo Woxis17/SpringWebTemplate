@@ -8,7 +8,7 @@ import javax.persistence.Entity;
  * Created by robertz on 12/01/2017.
  */
 @Entity
-public class UserLogin extends BaseEntity{
+public class UserLogin extends BaseEntity {
 
     private String username;
     private String password;
