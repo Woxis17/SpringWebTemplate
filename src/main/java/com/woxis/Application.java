@@ -23,8 +23,4 @@ public class Application extends AbstractAnnotationConfigDispatcherServletInitia
         return new String[]{"/"};
     }
 
-    @PostConstruct
-    private void init() {
-        System.out.println("HELLO: Application");
-    }
 }

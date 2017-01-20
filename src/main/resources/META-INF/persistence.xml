@@ -3,6 +3,7 @@
 
     <persistence-unit name="PM">
         <class>com.woxis.model.domain.UserLogin</class>
+        <class>com.woxis.model.domain.Person</class>
 
         <properties>
             <property name="hibernate.bytecode.use_reflection_optimizer" value="false"/>
