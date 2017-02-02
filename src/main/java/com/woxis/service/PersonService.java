@@ -1,4 +1,4 @@
-package com.woxis.services;
+package com.woxis.service;
 
 import com.woxis.dao.PersonDAO;
 import com.woxis.model.domain.Person;

@@ -1,7 +1,7 @@
 package com.woxis.controller;
 
 import com.woxis.model.domain.Person;
-import com.woxis.services.PersonService;
+import com.woxis.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

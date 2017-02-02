@@ -1,24 +1,25 @@
 package com.woxis;
 
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
-
-import javax.annotation.PostConstruct;
 
 /**
  * Created by Robert on 05-Jan-17.
  */
-@Component
-public class Application extends AbstractAnnotationConfigDispatcherServletInitializer {
+@Configuration
+public class AppInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
+    @Override
     protected Class<?>[] getRootConfigClasses() {
-        return null;
+        return new Class<?>[]{RootConfig.class};
     }
 
+    @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class[]{WebConfig.class};
+        return new Class<?>[]{WebConfig.class};
     }
 
+    @Override
     protected String[] getServletMappings() {
         return new String[]{"/"};
     }
