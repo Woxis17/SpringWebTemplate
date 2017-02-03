@@ -12,8 +12,15 @@ public class UserLogin extends BaseEntity {
 
     private String username;
     private String password;
+    private String authorities;
 
     public UserLogin() {}
+
+    public UserLogin(String username, String password, String authorities) {
+        this.username = username;
+        this.password = password;
+        this.authorities = authorities;
+    }
 
     public String getUsername() {
         return username;
@@ -29,5 +36,13 @@ public class UserLogin extends BaseEntity {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getAuthorities() {
+        return authorities;
+    }
+
+    public void setAuthorities(String authorities) {
+        this.authorities = authorities;
     }
 }
