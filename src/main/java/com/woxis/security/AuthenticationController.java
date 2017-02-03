@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletRequest;
  * Created by robertz on 03/02/2017.
  */
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/api/auth")
 public class AuthenticationController {
 
     @Autowired
