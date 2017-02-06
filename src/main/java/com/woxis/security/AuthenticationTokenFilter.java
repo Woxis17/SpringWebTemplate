@@ -22,7 +22,6 @@ import java.io.IOException;
  */
 public class AuthenticationTokenFilter extends UsernamePasswordAuthenticationFilter {
 
-
     @Autowired
     private TokenUtils tokenUtils;
 

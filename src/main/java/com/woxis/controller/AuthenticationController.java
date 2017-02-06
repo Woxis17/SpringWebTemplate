@@ -1,5 +1,10 @@
-package com.woxis.security;
+package com.woxis.controller;
 
+import com.woxis.security.AppConstant;
+import com.woxis.security.AuthenticationRequest;
+import com.woxis.security.AuthenticationResponse;
+import com.woxis.security.SpringSecurityUser;
+import com.woxis.security.TokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -27,7 +32,7 @@ public class AuthenticationController {
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    private  TokenUtils tokenUtils;
+    private TokenUtils tokenUtils;
 
     @Autowired
     private UserDetailsService userDetailsService;
