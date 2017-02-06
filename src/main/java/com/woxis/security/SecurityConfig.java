@@ -23,7 +23,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
 @EnableTransactionManagement
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 

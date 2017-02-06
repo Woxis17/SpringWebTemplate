@@ -21,12 +21,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         UserLogin userLogin = userLoginService.loadUserByUsername(username);
 
-        System.out.println("### userLoginService + userLogin: " + userLogin + " ###");
-
         if(userLogin == null) {
             throw new UsernameNotFoundException(String.format("No user found with username '%s", username));
         } else {
-            System.out.println("### userLoginService + userLogin: " + userLogin + " ###");
             return new SpringSecurityUser(
                     userLogin.getId(),
                     userLogin.getUsername(),
