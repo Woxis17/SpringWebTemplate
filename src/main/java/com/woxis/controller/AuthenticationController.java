@@ -1,10 +1,12 @@
 package com.woxis.controller;
 
+import com.woxis.model.domain.UserLogin;
 import com.woxis.security.AppConstant;
 import com.woxis.security.AuthenticationRequest;
 import com.woxis.security.AuthenticationResponse;
 import com.woxis.security.SpringSecurityUser;
 import com.woxis.security.TokenUtils;
+import com.woxis.service.UserLoginService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -37,7 +39,10 @@ public class AuthenticationController {
     @Autowired
     private UserDetailsService userDetailsService;
 
-    @RequestMapping(method = RequestMethod.POST)
+    @Autowired
+    private UserLoginService userLoginService;
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResponseEntity<?> authenticationRequest(@RequestBody AuthenticationRequest authenticationRequest)
             throws AuthenticationException {
 
@@ -56,6 +61,11 @@ public class AuthenticationController {
 
         return ResponseEntity.ok(new AuthenticationResponse(token));
 
+    }
+
+    @RequestMapping(value = "/signup", method= RequestMethod.POST)
+    public void signUp(@RequestBody UserLogin user) {
+        userLoginService.addUser(user);
     }
 
     @RequestMapping(value = "refresh", method = RequestMethod.GET)

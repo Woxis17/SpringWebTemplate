@@ -33,7 +33,8 @@ public class HomeController {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
 
-        System.out.println("##### username: " + name);
+        UserLogin userLogin = userLoginService.loadUserByUsername(name);
+        System.out.println("##### username: " + userLogin.getUsername());
 
         return "hello";
     }
