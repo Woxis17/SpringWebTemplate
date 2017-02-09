@@ -1,4 +1,4 @@
-package com.woxis.dao;
+package com.woxis.repository;
 
 import com.woxis.model.domain.UserLogin;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 /**
  * Created by Robert on 09-Feb-17.
  */
-public interface UserLoginDAO extends JpaRepository<UserLogin, Long> {
+public interface UserLoginRepository extends JpaRepository<UserLogin, Long> {
 
     UserLogin findByUsername(String username);
 

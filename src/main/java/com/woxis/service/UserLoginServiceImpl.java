@@ -1,6 +1,6 @@
 package com.woxis.service;
 
-import com.woxis.dao.UserLoginDAO;
+import com.woxis.repository.UserLoginRepository;
 import com.woxis.model.domain.UserLogin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,24 +15,24 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserLoginServiceImpl implements UserLoginService {
 
     @Autowired
-    private UserLoginDAO userLoginDAO;
+    private UserLoginRepository userLoginRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
     public UserLogin loadUserByUsername(String username) {
-        return userLoginDAO.findByUsername(username);
+        return userLoginRepository.findByUsername(username);
     }
 
     /* TODO check duplicates */
     public void addUser(UserLogin userLogin) {
         //throws WrongUserCredentialsException,DuplicatedCredentialsException
         userLogin.setPassword(passwordEncoder.encode(userLogin.getPassword()));
-        userLoginDAO.save(userLogin);
+        userLoginRepository.save(userLogin);
     }
 
     public UserLogin getUser(long id) {
-        return userLoginDAO.findOne(id);
+        return userLoginRepository.findOne(id);
     }
 
     /* TODO */
