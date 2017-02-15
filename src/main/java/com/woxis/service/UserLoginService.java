@@ -9,12 +9,12 @@ public interface UserLoginService {
 
     UserLogin loadUserByUsername(String username);
 
-    void addUser(UserLogin userLogin);
+    void addUser(UserLogin userLogin) throws DuplicateUsernameException;
 
     UserLogin getUser(long id);
 
     UserLogin updateUser(UserLogin userLogin);
 
-    boolean delete(long id);
+    void delete(long id);
 
 }

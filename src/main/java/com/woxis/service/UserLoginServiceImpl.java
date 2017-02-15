@@ -20,13 +20,16 @@ public class UserLoginServiceImpl implements UserLoginService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+
     public UserLogin loadUserByUsername(String username) {
         return userLoginRepository.findByUsername(username);
     }
 
-    /* TODO check duplicates */
-    public void addUser(UserLogin userLogin) {
-        //throws WrongUserCredentialsException,DuplicatedCredentialsException
+    public void addUser(UserLogin userLogin) throws DuplicateUsernameException{
+        UserLogin ul = loadUserByUsername(userLogin.getUsername());
+        if (ul != null) {
+            throw new DuplicateUsernameException("This username arleady exist in database");
+        }
         userLogin.setPassword(passwordEncoder.encode(userLogin.getPassword()));
         userLoginRepository.save(userLogin);
     }
@@ -35,16 +38,13 @@ public class UserLoginServiceImpl implements UserLoginService {
         return userLoginRepository.findOne(id);
     }
 
-    /* TODO */
     public UserLogin updateUser(UserLogin userLogin) {
-
-        //sessionFactory.getCurrentSession().update(userLogin);
+        userLoginRepository.save(userLogin);
         return getUser(userLogin.getId());
     }
 
-    /* TODO */
-    public boolean delete(long id) {
-        // sessionFactory.getCurrentSession().delete(getUser(id));
-        return true;
+
+    public void delete(long id) {
+        userLoginRepository.delete(getUser(id));
     }
 }

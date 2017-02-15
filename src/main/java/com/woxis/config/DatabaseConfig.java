@@ -1,13 +1,9 @@
 package com.woxis.config;
 
-import com.woxis.model.domain.UserLogin;
 import com.zaxxer.hikari.HikariDataSource;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -20,7 +16,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
 
 /**
  * Created by robertz on 02/02/2017.
@@ -29,9 +24,6 @@ import java.util.Properties;
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = "com.woxis.repository")
 public class DatabaseConfig {
-
-    @Autowired
-    private ApplicationContext applicationContext;
 
     @Bean
     public HikariDataSource getDataSource() {
@@ -52,28 +44,14 @@ public class DatabaseConfig {
         emf.setPersistenceUnitName("woxis-pu");
         Map<String, String> properties = new HashMap<String, String>();
         properties.put("javax.persistence.schema-generation.database.action", "drop-and-create");
+        // drop-and-create
+        // create
         emf.setJpaPropertyMap(properties);
         emf.setDataSource(ds);
         emf.setJpaVendorAdapter(adapter);
         emf.setPackagesToScan("com.woxis.model");
         return emf;
     }
-
-    /*@Bean(name = "sessionFactory")
-    public LocalSessionFactoryBean hibernate5SessionFactoryBean() {
-        LocalSessionFactoryBean localSessionFactoryBean = new LocalSessionFactoryBean();
-        localSessionFactoryBean.setDataSource(applicationContext.getBean(HikariDataSource.class));
-        localSessionFactoryBean.setAnnotatedClasses(
-                UserLogin.class
-        );
-
-        Properties properties = new Properties();
-        properties.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
-        properties.put("hibernate.hbm2ddl.auto", "update");
-
-        localSessionFactoryBean.setHibernateProperties(properties);
-        return localSessionFactoryBean;
-    }*/
 
     @Bean
     public JpaVendorAdapter createVendorAdapter() {
@@ -89,6 +67,5 @@ public class DatabaseConfig {
         JpaTransactionManager txManager = new JpaTransactionManager(emf);
         return txManager;
     }
-
 
 }

@@ -1,9 +1,8 @@
 package com.woxis.controller;
 
-import com.woxis.model.domain.Person;
-import com.woxis.service.PersonService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,34 +11,20 @@ import org.springframework.web.bind.annotation.RestController;
  * Created by Robert on 05-Jan-17.
  */
 @RestController
-@RequestMapping("/person")
+@RequestMapping("/api")
 public class PersonController {
 
-        /* TODO add logger */
-    /* TODO use services */
 
-    @Autowired
-    private PersonService personService;
+    @RequestMapping(path = "/hello", method = RequestMethod.GET)
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+    public String hello() {
 
-    @RequestMapping(method = RequestMethod.POST)
-    public void insertPerson(@RequestBody Person p) {
-        System.out.println("Wywołano insertPerson REST ");
-        personService.insertPerson(p);
-    }
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName();
 
-    @RequestMapping(method = RequestMethod.GET)
-    public String getPerson() {
-        return "getting person";
-    }
+        System.out.println("##### username: " + name);
 
-    @RequestMapping(method = RequestMethod.PUT)
-    public String updatePerson() {
-        return "updating person";
-    }
-
-    @RequestMapping(method = RequestMethod.DELETE)
-    public String deletePerson() {
-        return "deleting person";
+        return "hello";
     }
 
 
