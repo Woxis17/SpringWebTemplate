@@ -27,5 +27,11 @@ public class PersonController {
         return "hello";
     }
 
+    @RequestMapping(path = "/nothing", method = RequestMethod.GET)
+    public String nothing() {
+
+        return "nothing";
+    }
+
 
 }
